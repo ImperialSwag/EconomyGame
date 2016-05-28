@@ -1,5 +1,8 @@
+import java.text.DecimalFormat;
+
 
 public class Api {
+	public static DecimalFormat df = new DecimalFormat("#.##");
 	public static double balance = 100;
 	public static int abyss_amount = 0;
 	public static double abyss_value = 5;
@@ -7,6 +10,10 @@ public class Api {
 	public static double giant_value = 5;
 	public static int lautrec_amount = 0;
 	public static double lautrec_value = 5;
+	
+	public static String getStockValues(){
+		return "Abyss: "+df.format(abyss_value)+" - Giant: "+df.format(giant_value)+" - Lautrec: "+df.format(lautrec_value);
+	}
 	
 	public static int getAbyss_amount() {
 		return abyss_amount;
@@ -46,6 +53,9 @@ public class Api {
 	}
 	public static double getBalance(){
 		return balance;
+	}
+	public static String getStringBalance(){
+		return df.format(balance);
 	}
 	public static void setBalance(double bal){
 		balance = bal;

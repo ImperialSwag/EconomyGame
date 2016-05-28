@@ -11,11 +11,21 @@ public class Game {
 		int day = 1;
 		Scanner sc = new Scanner(System.in);
 		while(true){
+			if(Api.getBalance() <= -100){
+				System.out.println("Game over");
+				System.out.println("You survived "+day+" days. Git gud now.");
+			}
 			Api.setAbyss_value((Math.random()*40)-20);
+			Api.setLautrec_value((Math.random()*40)-20);
+			Api.setGiant_value((Math.random()*40)-20);
 			System.out.println("Day "+day);
-			System.out.println("Your balance is: "+Api.getBalance());
-			if(sc.nextLine().equals("cancel"))
+			System.out.println("Your balance is: "+Api.getStringBalance());
+			System.out.println(Api.getStockValues());
+			String input = sc.nextLine();
+			if(input.equals("cancel"))
 				break;
+			Api.setBalance(Api.getBalance()-15);
+			day++;
 			
 		}
 	}
