@@ -14,6 +14,14 @@ public class Api {
 	public static String getStockValues(){
 		return "Abyss: "+df.format(abyss_value)+" - Giant: "+df.format(giant_value)+" - Lautrec: "+df.format(lautrec_value);
 	}
+	public static String getStockAmounts(){
+		return "Abyss: "+abyss_amount+" - Giant: "+giant_amount+" - Lautrec: "+lautrec_amount;
+	}
+	public static void generateStockValues(){
+		setAbyss_value((Math.random()*40)-20);
+		setLautrec_value((Math.random()*40)-20);
+		setGiant_value((Math.random()*40)-20);
+	}
 	
 	public static int getAbyss_amount() {
 		return abyss_amount;
