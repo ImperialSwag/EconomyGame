@@ -4,11 +4,10 @@ import java.util.Scanner;
 public class Game {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		System.out.println("Welcome to game of economy");
-		System.out.println("Your goal is not to reach -100 balance, you will loose 15 balance everyday.");
+		System.out.println("Your goal is not to reach negatice balance, you will loose 20 balance everyday.");
 		System.out.println("You can buy and sell stocks but you can do one action each day, these actions are:");
-		System.out.println("cashout <stock-name> <amount> - Just cashout will sell all your stocks, adding a name will sell only those stocks, adding an amount will sell the amount you specify from the stock you want.");
+		System.out.println("sell <stock-name> <amount> - Just sell will sell all your stocks, adding a name will sell only those stocks, adding an amount will sell the amount you specify from the stock you want.");
 		System.out.println("buy <stock-name> <amount> - You must specify all parameters in this action, this will buy stocks.");
 		System.out.println("Any other input will skip the day, so make sure you enter the names and the commands right.");
 		System.out.println("Type cancel to quit the game");
@@ -34,16 +33,31 @@ public class Game {
 			String[] str = input.split(" ");
 			if(str.length > 3)
 				break;
-			if(str.length == 1 && str[0].equals("cashout")){
-				//todo
-			} else if(str[0].equals("cashout")){
-				//todo
+			if(str.length == 1 && str[0].equals("sell")){
+				Api.sellStock("all", 0);
+			} else if(str[0].equals("sell")){
+				if(str.length == 2)
+					Api.sellAllStock(str[1]);
+				else if(str.length == 3)
+					try{
+						int amount = Integer.parseInt(str[2]);
+						Api.sellStock(str[1], amount);
+					} catch (NumberFormatException e){
+						e.printStackTrace();
+					}
 			} else if(str[0].equals("buy")){
-				//todo
+				if(str.length == 3){
+					try{
+						int amount = Integer.parseInt(str[2]);
+						Api.buyStock(str[1], amount);
+					} catch (NumberFormatException e){
+						e.printStackTrace();
+					}
+				}
 			}
-			Api.setBalance(Api.getBalance()-15);
+			Api.setBalance(Api.getBalance()-20);
 			day++;
-			
+			Api.reloadStockValues();
 		}
 	}
 
