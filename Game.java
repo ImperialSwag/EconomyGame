@@ -7,16 +7,17 @@ public class Game {
 		System.out.println("Welcome to game of economy");
 		System.out.println("Your goal is not to reach negative balance, you will loose 20 balance everyday.");
 		System.out.println("You can buy and sell stocks but you can only do one action each day, these actions are:");
-		System.out.println("sell <stock-name> <amount> - Just sell will sell all your stocks, adding a name will sell only those stocks, adding an amount will sell the amount you specify from the stock you want.");
-		System.out.println("buy <stock-name> <amount> - You must specify all parameters in this action, this will buy stocks.");
+		System.out.println("sell stock-name amount - Just sell will sell all your stocks, adding a name will only sell those stocks, adding an amount will sell the amount you specify from the stock you want.");
+		System.out.println("buy stock-name amount - You must specify all parameters in this action, this will buy stocks.");
 		System.out.println("Any other input will skip the day, so make sure you enter the names and the commands right.");
 		System.out.println("Type cancel to quit the game");
 		int day = 1;
 		Scanner sc = new Scanner(System.in);
 		while(true){
-			if(Api.getBalance() <= -100){
+			if(Api.getBalance() <= 0){
 				System.out.println("Game over");
 				System.out.println("You survived "+day+" days. Git gud now.");
+				String close = sc.nextLine();
 				break;
 			}
 			Api.generateStockValues();
@@ -28,13 +29,16 @@ public class Game {
 			System.out.println(Api.getStockAmounts());
 			
 			String input = sc.nextLine();
-			if(input.equals("cancel"))
+			if(input.equals("cancel")){
+				System.out.println("Press anykey to close.");
+				String close = sc.nextLine();
 				break;
+			}
 			String[] str = input.split(" ");
 			if(str.length > 3)
 				break;
 			if(str.length == 1 && str[0].equals("sell")){
-				Api.sellStock("all", 0);
+				Api.sellAllStock("all");
 			} else if(str[0].equals("sell")){
 				if(str.length == 2)
 					Api.sellAllStock(str[1]);
