@@ -5,8 +5,8 @@ public class Game {
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to game of economy");
-		System.out.println("Your goal is not to reach negatice balance, you will loose 20 balance everyday.");
-		System.out.println("You can buy and sell stocks but you can do one action each day, these actions are:");
+		System.out.println("Your goal is not to reach negative balance, you will loose 20 balance everyday.");
+		System.out.println("You can buy and sell stocks but you can only do one action each day, these actions are:");
 		System.out.println("sell <stock-name> <amount> - Just sell will sell all your stocks, adding a name will sell only those stocks, adding an amount will sell the amount you specify from the stock you want.");
 		System.out.println("buy <stock-name> <amount> - You must specify all parameters in this action, this will buy stocks.");
 		System.out.println("Any other input will skip the day, so make sure you enter the names and the commands right.");
